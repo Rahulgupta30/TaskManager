@@ -1,0 +1,40 @@
+{% extends 'tasks/base.html' %}
+
+{% block content %}
+<div class="max-w-lg mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 animate-fade-in">
+    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">{{ action }} Task</h2>
+    <form method="post" class="space-y-6">
+        {% csrf_token %}
+        <div>
+            <label for="id_title" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Title</label>
+            <div class="mt-1 relative">
+                <input type="text" name="title" id="id_title" value="{{ form.title.value|default_if_none:'' }}" class="block w-full rounded-lg border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm focus:ring-purple-500 focus:border-purple-500 transition duration-300 {{ form.title.errors|yesno:'border-red-500,' }} pl-10" placeholder="Enter task title">
+                <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            </div>
+            {% if form.title.errors %}
+                <p class="text-red-500 text-sm mt-1">{{ form.title.errors }}</p>
+            {% endif %}
+        </div>
+        <div>
+            <label for="id_description" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Description</label>
+            <div class="mt-1 relative">
+                <textarea name="description" id="id_description" rows="4" class="block w-full rounded-lg border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm focus:ring-purple-500 focus:border-purple-500 transition duration-300 {{ form.description.errors|yesno:'border-red-500,' }} pl-10" placeholder="Enter task description">{{ form.description.value|default_if_none:'' }}</textarea>
+                <svg class="absolute left-3 top-4 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
+            </div>
+            {% if form.description.errors %}
+                <p class="text-red-500 text-sm mt-1">{{ form.description.errors }}</p>
+            {% endif %}
+        </div>
+        <div class="flex space-x-4">
+            <button type="submit" class="flex items-center bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition duration-300">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                {{ action }}
+            </button>
+            <a href="{% url 'task_list' %}" class="flex items-center bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300 px-6 py-3 rounded-lg font-semibold hover:bg-gray-300 dark:hover:bg-gray-500 transition duration-300">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                Cancel
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+/* Custom styles for premium UI */
+body {
+    background: linear-gradient(135deg, #e0e7ff 0%, #c3dafe 100%);
+}
+.dark body {
+    background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+}
+.font-inter {
+    font-family: 'Inter', sans-serif;
+}
+input, textarea {
+    transition: all 0.3s ease;
+}
+input:focus, textarea:focus {
+    transform: scale(1.01);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
+}
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+.animate-pulse-subtle {
+    animation: pulseSubtle 2s infinite;
+}
+@keyframes pulseSubtle {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.9; }
+}
+.navbar-logo svg {
+    display: inline-block;
+    stroke: white !important;
+}
